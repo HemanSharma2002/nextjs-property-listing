@@ -327,7 +327,7 @@ export default function Properties({ }: Props) {
                         {
                             properties.map(
                                 property=>(
-                                    <div >
+                                    <div key={property._id as string} >
                                         <PropertyCard property={property}/>
                                     </div>
                                 )

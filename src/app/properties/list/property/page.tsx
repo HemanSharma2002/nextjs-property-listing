@@ -27,6 +27,7 @@ import { Building2Icon, Cross, CrossIcon, House, HouseIcon, X } from 'lucide-rea
 import { propertySchema } from '@/schema/propertySchema'
 import { Textarea } from '@/components/ui/textarea'
 import axios from 'axios'
+import Image from 'next/image'
 
 type Props = {}
 
@@ -236,7 +237,7 @@ export default function ListProperty({ }: Props) {
                                     <div className=' w-full min-h-10 rounded-md border-2 p-2 border-slate-200 flex flex-wrap gap-3 '>
                                         {
                                             field.value.map(f => (
-                                                <Label id={f} className=' flex flex-row gap-3 text-white bg-slate-950  p-1 px-2 rounded-md'>
+                                                <Label id={f} className=' flex flex-row gap-3 text-white bg-slate-950  p-1 px-2 rounded-md' key={f}>
                                                     <p className=' pt-1'>{f}</p>
                                                     <X onClick={() => {
                                                         field.onChange(
@@ -275,8 +276,8 @@ export default function ListProperty({ }: Props) {
                                     <div className=' w-full min-h-10 rounded-md border-2 p-2 border-slate-200 flex flex-wrap gap-3 '>
                                         {
                                             field.value.map(f => (
-                                                <Label id={f} className=' flex flex-row gap-3 text-white bg-slate-950 w-60 h-60 relative   rounded-md'>
-                                                    <img src={f} className=' w-full h-full object object-full rounded-md' alt="" />
+                                                <Label id={f} className=' flex flex-row gap-3 text-white bg-slate-950 w-60 h-60 relative   rounded-md' key={f}>
+                                                    <Image src={f} className=' w-full h-full object object-full rounded-md' alt="" />
                                                     <X className=' absolute z-10 right-3 top-3 text-black' onClick={() => {
                                                         field.onChange(
                                                             field.value?.filter(

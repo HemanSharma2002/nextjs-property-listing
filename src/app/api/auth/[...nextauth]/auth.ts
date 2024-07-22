@@ -5,7 +5,6 @@ import Credentials from "next-auth/providers/credentials"
 import dbConnect from "@/lib/dbConnect"
 import { randomUUID } from "crypto"
 import UserModel from "@/model/UserSchema"
-import { generateOTP } from "../../sign-up/route"
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -57,7 +56,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                                 name:profile?.name,
                                 email: profile?.email,
                                 password: randomUUID() as string,
-                                verificationCode:generateOTP(),
+                                verificationCode:"123456",
                                 verificationCodeExpiry:Date.now(),
                                 isVerified: true,
                                 image: profile?.picture

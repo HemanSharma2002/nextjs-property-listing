@@ -15,6 +15,7 @@ import Autoplay from "embla-carousel-autoplay"
 import { FcApproval } from "react-icons/fc";
 import { Loader2 } from 'lucide-react'
 import PropertyCard from '@/components/PropertyCard'
+import Image from 'next/image'
 
 type Props = {}
 
@@ -22,7 +23,7 @@ export default function PropertiesId({ }: Props) {
   const [property, setproperty] = useState<Property>()
   const [moreProperties, setmoreProperties] = useState<Array<Property>>()
   const { id } = useParams()
-  useEffect(loadPage, [])
+  useEffect(loadPage, [id])
   function loadPage() {
     getData()
     async function getData() {
@@ -70,8 +71,8 @@ export default function PropertiesId({ }: Props) {
                     <CarouselContent>
                       {
                         property.images?.map(image => (
-                          <CarouselItem className=' w-full h-[300px] md:h-[500px] rounded-md'>
-                            <img src={image} alt="Image" className=' w-full rounded-md' />
+                          <CarouselItem className=' w-full h-[300px] md:h-[500px] rounded-md ' key={image}>
+                            <Image src={image} alt="Image" className=' w-full rounded-md' />
                           </CarouselItem>
                         ))
                       }

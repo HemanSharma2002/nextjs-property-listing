@@ -13,6 +13,7 @@ import { MessageSquareIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import axios from 'axios'
+import Image from 'next/image'
 
 type Props = {
     property: Property
@@ -24,7 +25,7 @@ export default function PropertyCard({ property }: Props) {
     return (
         <main className=' border-2 border-slate-300 rounded-md w-[300px] md:w-[350px] h-[480px] flex flex-col gap-2 m-5 shadow-xl duration-700'>
             <Link href={`/properties/${property._id}`} className=' w-full h-[280px]  '>
-                <img className=' h-full w-full object rounded-t-md  object-cover  ' src={property.images?.at(0) || ""} alt="" />
+                <Image className=' h-full w-full object rounded-t-md  object-cover  ' src={property.images?.at(0) || ""} alt="" />
             </Link>
 
             <div className=' flex flex-col gap-4 m-2 text-lg'>

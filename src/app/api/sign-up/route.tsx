@@ -2,16 +2,6 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/UserSchema";
 import "bcryptjs"
 
-export function generateOTP() {
-    const digits = '0123456789';
-    let OTP = '';
-    for (let i = 0; i < 6; i++) {
-        OTP += digits[Math.floor(Math.random() * 10)];
-    }
-    return OTP;
-}
-
-
 export async function POST(req: Request) {
     try {
         dbConnect()
@@ -23,7 +13,6 @@ export async function POST(req: Request) {
         )
         const bcrypt = await require('bcryptjs');
         const hashpassword = await bcrypt.hash(password, 10)
-        const otp = generateOTP();
         if (existingUser) {
             if (existingUser.isVerified) {
                 return Response.json({
@@ -35,14 +24,13 @@ export async function POST(req: Request) {
             }
             await UserModel.findByIdAndUpdate(existingUser._id,{
                 password,
-                verificationCode:otp,
+                verificationCode:"564564",
                 verificationCodeExpiry: new Date(Date.now() + (2 * 60 * 60 * 1000))
             })
             //send otp to email
             return Response.json({
                 success: false,
-                message: "User exist but not verified. Otp send ",
-                otp
+                message: "User exist but not verified."
             }, {
                 status: 200
             })
@@ -51,7 +39,7 @@ export async function POST(req: Request) {
             name,
             email,
             password: hashpassword,
-            verificationCode: otp,
+            verificationCode: "123456",
             verificationCodeExpiry: new Date(Date.now() + (2 * 60 * 60 * 1000)),
             isVerified:true
         })
