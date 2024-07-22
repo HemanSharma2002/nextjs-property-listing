@@ -11,7 +11,7 @@ async function dbConnect():Promise<void>{
         return
     }
     try {
-        const db =await mongoose.connect(process.env.MONGODB_URI || "")
+        const db =await mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://springstoreindia:Ap4h7ZfFU6mx4mXd@cluster0.fnvklla.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
         connection.isConnected=db.connections[0].readyState
         console.log("DB connected");
         return
